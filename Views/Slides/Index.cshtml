@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TriviaLink.Models.Slide>
+
+@{
+    ViewData["Title"] = "Trivia Slides";
+}
+
+<h1>Trivia Slides</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Question)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Answer)
+            </th>
+            <th>
+                Game ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Answer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SlideID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SlideID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SlideID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
