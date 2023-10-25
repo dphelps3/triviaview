@@ -31,7 +31,11 @@ namespace TriviaLink.Services
 
         public static bool CheckCodeValidity()
         {
-            
+            // Need to develop a function that checks
+            // previous game codes in the database to
+            // ensure the game code is new and has
+            // not already been used.
+            return false;
         }
     }
 }
