@@ -1,12 +1,18 @@
 ﻿using System.Data;
 using TriviaLink.Models;
 using Microsoft.EntityFrameworkCore;
+using TriviaLink.Data;
 
 namespace TriviaLink.Services
 {
     public class CodeGenerator
     {
+        private readonly ApplicationDbContext _context;
 
+        public CodeGenerator(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         public static string GenerateCode()
         {
@@ -29,12 +35,27 @@ namespace TriviaLink.Services
             return str;
         }
 
-        public static bool CheckCodeValidity()
+        public async Task<string> GenerateUniqueCode()
         {
-            // Need to develop a function that checks
-            // previous game codes in the database to
-            // ensure the game code is new and has
-            // not already been used.
+            string code = string.Empty;
+            bool isMatch = true;
+
+            while (isMatch == true)
+            {
+                code = GenerateCode();
+                isMatch = await GameCodeMatchExisting(code);
+            }
+            return code;
+        }
+
+        public async Task<bool> GameCodeMatchExisting(string newGameCode)
+        {
+            var existingGameCodes = await _context.Game.Select(x => x.GameCode).ToListAsync();
+
+            if (existingGameCodes.Any(x => x == newGameCode))
+            {
+                return true;
+            }
             return false;
         }
     }
