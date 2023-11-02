@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TriviaLink.Data;
 using TriviaLink.Models;
+using TriviaLink.Services;
 
 namespace TriviaLink.Controllers
 {
     public class GamesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ICodeGeneratorService? _codeGeneratorService;
 
         public GamesController(ApplicationDbContext context)
         {
@@ -46,8 +48,12 @@ namespace TriviaLink.Controllers
         }
 
         // GET: Games/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var uniqueCode = await _codeGeneratorService.GenerateUniqueCode();
+
+            ViewBag.UniqueCode = uniqueCode;
+
             return View();
         }
 

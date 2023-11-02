@@ -1,6 +1,8 @@
-﻿namespace TriviaLink.Services
+﻿
+namespace TriviaLink.Services
 {
-    public class ICodeGeneratorService
+    public interface ICodeGeneratorService
     {
+        Task<string>? GenerateUniqueCode();
     }
 }

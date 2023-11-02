@@ -475,3 +475,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Custom ignores
+.vs/ProjectEvaluation/
+.vs/TriviaLink/DesignTimeBuild/.dtbcache.v2
+.vs/TriviaLink/v17/.futdcache.v2
+.vs/TriviaLink/v17/.suo
+bin/Debug/net7.0/

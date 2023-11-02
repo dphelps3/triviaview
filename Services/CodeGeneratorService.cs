@@ -5,11 +5,11 @@ using TriviaLink.Data;
 
 namespace TriviaLink.Services
 {
-    public class CodeGenerator
+    public class CodeGeneratorService : ICodeGeneratorService
     {
         private readonly ApplicationDbContext _context;
 
-        public CodeGenerator(ApplicationDbContext context)
+        public CodeGeneratorService(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -20,7 +20,7 @@ namespace TriviaLink.Services
 
             int stringlength = 4;
             int randValue;
-            string str = "";
+            string str = String.Empty;
             char letter;
 
             for (int i = 0; i < stringlength; i++)
