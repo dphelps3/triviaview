@@ -14,10 +14,11 @@ namespace TriviaLink.Controllers
     public class GamesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly ICodeGeneratorService? _codeGeneratorService;
+        private readonly ICodeGeneratorService _codeGeneratorService;
 
-        public GamesController(ApplicationDbContext context)
+        public GamesController(ICodeGeneratorService codeGeneratorService, ApplicationDbContext context)
         {
+            _codeGeneratorService = codeGeneratorService;
             _context = context;
         }
 

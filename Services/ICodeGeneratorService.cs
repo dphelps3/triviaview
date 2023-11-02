@@ -3,6 +3,6 @@ namespace TriviaLink.Services
 {
     public interface ICodeGeneratorService
     {
-        Task<string>? GenerateUniqueCode();
+        Task<string> GenerateUniqueCode();
     }
 }
